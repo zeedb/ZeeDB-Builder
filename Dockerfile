@@ -1,12 +1,8 @@
-FROM rust:slim-buster AS builder
+FROM rustlang/rust:nightly-slim AS builder
 
 RUN cargo install grcov
 
-FROM rust:slim-buster
-
-# Switch to rust nightly.
-RUN rustup toolchain install nightly-2021-10-12 && \
-    rustup default nightly-2021-10-12
+FROM rustlang/rust:nightly-slim
 
 # Install tools.
 RUN rustup component add llvm-tools-preview
